@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="png" href="./assets/icon.png">
+    <title>Clubs - CampusPulse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#f59e0b',
+                        dark: '#1e1b4b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-mono">
+    
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <div class="w-10 h-9 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <img src="./assets/icon.png" alt="Calender">
+                        </div>
+                        <span class="text-xl font-bold text-dark">CampusPulse</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="events.html" class="text-gray-600 hover:text-primary transition">Events</a>
+                    <a href="clubs.html" class="text-primary font-medium">Clubs</a>
+                    <a href="dashboard.html" class="text-gray-600 hover:text-primary transition">Dashboard</a>
+                    <button class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full hover:shadow-lg transition transform hover:scale-105">
+                        Sign In
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-primary">Home</a>
+                <a href="events.html" class="block text-gray-600 hover:text-primary">Events</a>
+                <a href="clubs.html" class="block text-primary font-medium">Clubs</a>
+                <a href="dashboard.html" class="block text-gray-600 hover:text-primary">Dashboard</a>
+                <button class="w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section class="bg-gradient-to-r from-secondary to-primary py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Campus Clubs & Societies</h1>
+            <p class="text-xl text-gray-100">Find your community and pursue your passions</p>
+        </div>
+    </section>
+
+    
+    <section class="py-8 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full md:w-96">
+                    <input type="text" id="club-search" placeholder="Search clubs..." 
+                        class="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none">
+                    <svg class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+                
+                <div class="flex gap-3">
+                    <select id="category-filter" class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary outline-none bg-white">
+                        <option value="">All Categories</option>
+                        <option value="tech">Technology</option>
+                        <option value="cultural">Cultural</option>
+                        <option value="sports">Sports</option>
+                        <option value="academic">Academic</option>
+                        <option value="arts">Arts & Music</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="clubs-count" class="mb-6 text-gray-600"></div>
+            <div id="clubs-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+            </div>
+            
+            
+            <div id="empty-state" class="hidden text-center py-16">
+                <svg class="w-24 h-24 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <h3 class="text-xl font-semibold text-gray-600">No clubs found</h3>
+                <p class="text-gray-400">Try adjusting your search</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-16 bg-gradient-to-r from-accent to-orange-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Can't Find Your Interest?</h2>
+            <p class="text-xl text-white/90 mb-8">Start your own club and bring together like-minded individuals!</p>
+            <button class="bg-white text-accent px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition transform hover:scale-105">
+                Start a New Club
+            </button>
+        </div>
+    </section>
+
+    
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-10 h-9 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <img src="./assets/icon.png" alt="Calender">
+                        </div>
+                    <span class="text-xl font-bold">CampusPulse</span>
+                </div>
+                <p class="text-gray-400">&copy; 2026 CampusPulse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/clubs.js"></script>
+</body>
+</html>

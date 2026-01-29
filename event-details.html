@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="png" href="./assets/icon.png">
+    <title>Event Details - CampusPulse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#f59e0b',
+                        dark: '#1e1b4b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-mono">
+    
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <div class="w-10 h-9 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <img src="./assets/icon.png" alt="Calender">
+                        </div>
+                        <span class="text-xl font-bold text-dark">CampusPulse</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="events.html" class="text-primary font-medium">Events</a>
+                    <a href="clubs.html" class="text-gray-600 hover:text-primary transition">Clubs</a>
+                    <a href="dashboard.html" class="text-gray-600 hover:text-primary transition">Dashboard</a>
+                    <button class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full hover:shadow-lg transition transform hover:scale-105">
+                        Sign In
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-primary">Home</a>
+                <a href="events.html" class="block text-primary font-medium">Events</a>
+                <a href="clubs.html" class="block text-gray-600 hover:text-primary">Clubs</a>
+                <a href="dashboard.html" class="block text-gray-600 hover:text-primary">Dashboard</a>
+                <button class="w-full bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex items-center space-x-2 text-sm">
+                <a href="index.html" class="text-gray-500 hover:text-primary">Home</a>
+                <span class="text-gray-400">/</span>
+                <a href="events.html" class="text-gray-500 hover:text-primary">Events</a>
+                <span class="text-gray-400">/</span>
+                <span id="breadcrumb-title" class="text-primary font-medium">Event Details</span>
+            </nav>
+        </div>
+    </div>
+
+    
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        
+                        <div id="event-image" class="h-64 md:h-80 bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <span class="text-6xl">🎉</span>
+                        </div>
+                        
+                       
+                        <div class="p-8">
+                            <div class="flex flex-wrap gap-3 mb-4">
+                                <span id="event-category" class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"></span>
+                                <span id="event-status" class="px-3 py-1 rounded-full text-sm font-medium"></span>
+                            </div>
+                            
+                            <h1 id="event-title" class="text-3xl md:text-4xl font-bold text-dark mb-4"></h1>
+                            
+                            <p id="event-description" class="text-gray-600 text-lg leading-relaxed mb-8"></p>
+                            
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-8">
+                                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Date</p>
+                                        <p id="event-date" class="font-semibold text-dark"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-secondary/10 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Time</p>
+                                        <p id="event-time" class="font-semibold text-dark"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Venue</p>
+                                        <p id="event-venue" class="font-semibold text-dark"></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center p-4 bg-gray-50 rounded-xl">
+                                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500">Capacity</p>
+                                        <p id="event-capacity" class="font-semibold text-dark"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="lg:col-span-1">
+                    
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                        <h3 class="text-lg font-semibold text-dark mb-4">Organized By</h3>
+                        <div class="flex items-center">
+                            <div id="club-avatar" class="w-14 h-14 bg-gradient-to-r from-primary to-secondary rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">
+                            </div>
+                            <div>
+                                <p id="club-name" class="font-semibold text-dark"></p>
+                                <p class="text-sm text-gray-500">Official Club</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+                        <div class="text-center mb-6">
+                            <p class="text-sm text-gray-500 mb-2">Registration Status</p>
+                            <p id="spots-left" class="text-2xl font-bold text-primary"></p>
+                        </div>
+                        
+                        <button id="register-btn" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition transform hover:scale-105 mb-4">
+                            Register Now
+                        </button>
+                        
+                        <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                            <button class="flex items-center hover:text-primary transition">
+                                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                                Save
+                            </button>
+                            <button class="flex items-center hover:text-primary transition">
+                                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                                </svg>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-10 h-9 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <img src="./assets/icon.png" alt="Calender">
+                        </div>
+                    <span class="text-xl font-bold">CampusPulse</span>
+                </div>
+                <p class="text-gray-400">&copy; 2026 CampusPulse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div id="registration-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-dark">Register for Event</h3>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <p id="modal-event-name" class="text-gray-600 mb-6"></p>
+            <form id="registration-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="john@college.edu">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="STU12345">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-3 rounded-lg font-semibold hover:shadow-lg transition">
+                    Complete Registration
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/eventdetails.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="png" href="./assets/icon.png">
+    <title>Admin Dashboard - CampusPulse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#f59e0b',
+                        dark: '#1e1b4b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center space-x-2">
+                        <div class="w-10 h-9 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <img src="./assets/icon.png" alt="Calender">
+                        </div>
+                        <span class="text-xl font-bold text-dark">CampusPulse</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="events.html" class="text-gray-600 hover:text-primary transition">Events</a>
+                    <a href="clubs.html" class="text-gray-600 hover:text-primary transition">Clubs</a>
+                    <a href="dashboard.html" class="text-primary font-medium">Dashboard</a>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-semibold">
+                            A
+                        </div>
+                        <span class="text-gray-700 font-medium">Admin</span>
+                    </div>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-primary">Home</a>
+                <a href="events.html" class="block text-gray-600 hover:text-primary">Events</a>
+                <a href="clubs.html" class="block text-gray-600 hover:text-primary">Clubs</a>
+                <a href="dashboard.html" class="block text-primary font-medium">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-dark">Admin Dashboard</h1>
+            <p class="text-gray-600 mt-1">Manage your events, clubs, and registrations</p>
+        </div>
+
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Total Events</p>
+                        <p id="stat-events" class="text-3xl font-bold text-dark">0</p>
+                        <p class="text-sm text-green-500 mt-2">+12% this month</p>
+                    </div>
+                    <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Active Clubs</p>
+                        <p id="stat-clubs" class="text-3xl font-bold text-dark">0</p>
+                        <p class="text-sm text-green-500 mt-2">+5% this month</p>
+                    </div>
+                    <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-7 h-7 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Registrations</p>
+                        <p id="stat-registrations" class="text-3xl font-bold text-dark">0</p>
+                        <p class="text-sm text-green-500 mt-2">+28% this week</p>
+                    </div>
+                    <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center">
+                        <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Total Members</p>
+                        <p id="stat-members" class="text-3xl font-bold text-dark">0</p>
+                        <p class="text-sm text-green-500 mt-2">+15% this month</p>
+                    </div>
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center">
+                        <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-dark">Recent Events</h2>
+                    <a href="events.html" class="text-primary text-sm font-medium hover:underline">View All</a>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left text-sm text-gray-500 border-b">
+                                <th class="pb-4 font-medium">Event</th>
+                                <th class="pb-4 font-medium">Club</th>
+                                <th class="pb-4 font-medium">Date</th>
+                                <th class="pb-4 font-medium">Status</th>
+                                <th class="pb-4 font-medium">Registrations</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-events-table">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-dark mb-6">Quick Actions</h2>
+                <div class="space-y-4">
+                    <button class="w-full flex items-center p-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-lg transition">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        Create New Event
+                    </button>
+                    <button class="w-full flex items-center p-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        Add New Club
+                    </button>
+                    <button class="w-full flex items-center p-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Generate Report
+                    </button>
+                    <button class="w-full flex items-center p-4 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition">
+                        <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
+                        Send Notification
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="grid lg:grid-cols-2 gap-8 mt-8">
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-dark mb-6">Top Clubs by Members</h2>
+                <div id="top-clubs-list" class="space-y-4">
+                    
+                </div>
+            </div>
+
+            
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-dark mb-6">Recent Registrations</h2>
+                <button onclick="downloadCSV()"
+ class="mb-4 bg-primary text-white px-4 py-2 rounded-lg text-sm hover:opacity-90">
+ Download Registrations CSV
+</button>
+
+                <div id="recent-registrations" class="space-y-4">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="bg-dark text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2026 CampusHub. Admin Dashboard</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
